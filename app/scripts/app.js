@@ -21,10 +21,16 @@
         
         .state('collection', {
             url: '/collection',
+<<<<<<< HEAD
             controller: 'CollectionCtrl as collection',
             templateUrl: '/templates/collection.html'
         });
 
+=======
+            templateUrl: '/templates/collection.html'
+        });
+        
+>>>>>>> angular-4
     }
     
     angular
