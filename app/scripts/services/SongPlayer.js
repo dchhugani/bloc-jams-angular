@@ -1,7 +1,22 @@
 (function() {
      function SongPlayer() {
           var SongPlayer = {};
+
+/**       
+*@function playSong
+*@desc plays current song when it is paused
+*@type {Object}
+*/         
+
+var playSong = function(song) {
+    currentBuzzObject.play();
+    song.playing = true;
+}
          
+/**       
+*@desc set as Current Song 
+*@type {Object}
+*/         
 var currentSong = null;
          
 /**
@@ -30,13 +45,19 @@ currentBuzzObject = new buzz.sound(song.audioUrl, {
 
 currentSong = song;
 };                   
+
+         
+/**
+*@function SongPlayer.play
+*@desc play new song when another is playing, or continue playing the currently paused song
+*@type method? ***Review with Matt***
+*/
          
          SongPlayer.play = function(song) {
              
              if (currentSong !== song) {
              setSong(song);
-             currentBuzzObject.play();
-             song.playing = true;
+             playSong(song);
              } else if (currentSong === song) {
          if (currentBuzzObject.isPaused()) {
              currentBuzzObject.play();
@@ -44,11 +65,19 @@ currentSong = song;
      }              
              
  };
+
+/**
+*@function SongPlayer.pause
+*@desc pause song pause button is clicked
+*@type method? ***Review with Matt***
+*/
          
         SongPlayer.pause = function(song) {
      currentBuzzObject.pause();
      song.playing = false;
  };
+         
+        
          
           return SongPlayer;
      }
