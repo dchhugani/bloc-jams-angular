@@ -7,7 +7,7 @@
              offsetXPercent = Math.max(0, offsetXPercent);
              offsetXPercent = Math.min(1, offsetXPercent);
              return offsetXPercent;
- };
+         };
          
          return {
          templateUrl: '/templates/directives/seek_bar.html',
@@ -31,26 +31,30 @@
                  return {width: percentString()};
              };
              
+             scope.thumbStyle = function () {
+                 return {left: percentString()};
+             }
+             
              scope.onClickSeekBar = function(event) {
-             var percent = calculatePercent(seekBar, event);
-             scope.value = percent * scope.max;
-         };
+                 var percent = calculatePercent(seekBar, event);
+                 scope.value = percent * scope.max;
+             };
              
              scope.trackThumb = function() {
                 $document.bind('mousemove.thumb', function(event) {
                     var percent = calculatePercent(seekBar, event);
                     scope.$apply(function() {
                         scope.value = percent * scope.max;
-         });
-     });
+                    });
+                });
  
-            $document.bind('mouseup.thumb', function() {
-                 $document.unbind('mousemove.thumb');
-                 $document.unbind('mouseup.thumb');
-        });
-     };
-  } 
-};
+                $document.bind('mouseup.thumb', function() {
+                    $document.unbind('mousemove.thumb');
+                    $document.unbind('mouseup.thumb');
+                });
+            };
+        } 
+    };
 }
  
      angular
