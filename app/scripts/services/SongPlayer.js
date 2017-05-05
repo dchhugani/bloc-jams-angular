@@ -31,8 +31,7 @@ var currentBuzzObject = null;
         
 var setSong = function(song) {
     if (currentBuzzObject) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong();
     }
 
 currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -101,9 +100,8 @@ SongPlayer.currentSong = null;
              currentSongIndex--;
 
              if (currentSongIndex < 0) {
-                 currentBuzzObject.stop();
+                 stopSong();
                  currentBuzzObject = null;
-                 SongPlayer.currentSong.playing = false;
                  SongPlayer.currentSong = null;
              } else {
                  var song = currentAlbum.songs[currentSongIndex];
@@ -118,21 +116,34 @@ SongPlayer.currentSong = null;
 *@desc takes currentSongIndex and adds one to go to next song
 *@type method? ***Review with Matt***
 */     
-   /*
+       
          SongPlayer.next = function() {
-            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-            currentSongIndex++;
-             
-             if (currentSongIndex > SongPlayer.currentSong.length) {
-                 currentBuzzObject.stop();
-                 SongPlayer.currentSong.playing = null;
+             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+             currentSongIndex++;
+
+             if (currentSongIndex > currentAlbum.songs.length - 1) {
+                 stopSong();
+                 currentBuzzObject = null;
+                 SongPlayer.currentSong = null;
              } else {
                  var song = currentAlbum.songs[currentSongIndex];
                  setSong(song);
                  playSong(song);
-     }
- };
-   */      
+             }
+    };
+         
+/**
+*@function stopSong
+*@desc stops song from playing 
+*@type {Object}
+*/   
+         
+         var stopSong = function() {
+             currentBuzzObject.stop();
+             SongPlayer.currentSong.playing = null;
+         };
+         
+         
           return SongPlayer;
      }
  
