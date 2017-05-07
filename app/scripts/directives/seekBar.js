@@ -1,4 +1,4 @@
-(function() {
+    (function() {
      function seekBar($document) {
          var calculatePercent = function(seekBar, event) {
              var offsetX = event.pageX - seekBar.offset().left;
