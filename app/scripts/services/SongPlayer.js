@@ -158,6 +158,24 @@ var getSongIndex = function(song) {
     };
          
 /**
+*@function SongPlayer.volume
+*@desc holds the value of volume
+*@type {Object}
+*/   
+         SongPlayer.currentVolume = null;
+                  
+/**
+*@function SongPlayer.setCurrentVolume
+*@desc sets value of volume to currentVolume
+*@type function
+*/   
+         SongPlayer.setCurrentVolume = function(volume) {
+             if(currentBuzzObject) {
+                 currentBuzzObject.setVolume(volume);
+             }
+         };  
+         
+/**
 *@function stopSong
 *@desc stops song from playing 
 *@type {Object}
